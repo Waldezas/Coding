@@ -1,1 +1,48 @@
-CritSearchVK
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CritSearchVK {
+
+	public static void main(String[] args) {
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(
+					"/Users/Valdas/Desktop/JavaReadTest/TextSource.txt"));
+			String line = reader.readLine();
+			while (line != null) {
+				
+			
+			String temp = "";	
+			     for (int i = 0; i < line.length(); i++) {
+			         char ch = line.charAt(i);
+
+			         // if current character is a digit
+			         if (Character.isDigit(ch)) {
+			            temp += ch;
+			         }  
+			         
+			         else {
+			        // set to 0 , so that next check can fail safely if temp ="" 
+			        	 temp = "0";
+			         }
+			         
+			             // if current character is an alphabet
+			         if (Integer.parseInt(temp) >= 10) {  //Integer.parseInt(x)
+			         		System.out.println(line);
+			         		// reset temporary string to empty
+			         		temp = "";
+			         		break;
+			         
+			         	}         	
+			         }
+			         			
+				// read next line
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
